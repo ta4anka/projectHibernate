@@ -12,7 +12,7 @@ public class SkillView {
     SkillController skillController = new SkillController();
     static Scanner scanner = new Scanner(System.in);
 
-    public void getSkillMenu() throws ClassNotFoundException {
+    public void getSkillMenu() throws ClassNotFoundException, SQLException {
         System.out.println("Enter:" +"\n"+
                 "'add' for adding new skill" +"\n"+
                 "'delete' for deleting skill" +"\n"+
@@ -63,7 +63,8 @@ public class SkillView {
                     System.out.println("Enter id of skill:");
                     input = scanner.next();
                     Integer idskill = Integer.parseInt(input);
-                    skillController.getById(idskill);
+                    System.out.println(skillController.getById(idskill));
+                    System.out.println("What do you want to do now?");
                     input = scanner.next();
                     break;
 
