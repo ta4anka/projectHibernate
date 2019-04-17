@@ -1,15 +1,17 @@
 package model;
 
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Data
+@Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "skills")
 public class Skill extends BaseEntity{

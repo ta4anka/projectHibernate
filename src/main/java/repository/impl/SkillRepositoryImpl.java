@@ -15,6 +15,12 @@ import java.util.List;
 public class SkillRepositoryImpl implements SkillRepository {
 
     public void save(Skill skill) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        session.save(skill);
+        session.getTransaction().commit();
+        session.close();
 
     }
 
@@ -32,11 +38,29 @@ public class SkillRepositoryImpl implements SkillRepository {
     }
 
     public void update(Skill skill) {
+        int id = skill.getId();
+        String newName = skill.getName();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+        Skill skillToUpdate = session.get(Skill.class,id);
+        skillToUpdate.setName(newName);
+
+        session.update(skillToUpdate);
+        session.getTransaction().commit();
+        session.close();
 
     }
 
     public void delete(Integer id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
+        session.beginTransaction();
+        Skill skill = session.get(Skill.class,id);
+
+        session.delete(skill);
+        session.getTransaction().commit();
+        session.close();
     }
 
     public Skill getById(Integer id) {
