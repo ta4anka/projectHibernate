@@ -10,7 +10,7 @@ import java.util.List;
 public class SkillController{
     SkillRepository skillRepository = new SkillRepositoryImpl();
 
-    public void save(Skill skill) throws SQLException, ClassNotFoundException {
+    public void save(Skill skill){
         if(skill == null){
             throw new IllegalArgumentException();
         }else {
@@ -18,17 +18,17 @@ public class SkillController{
         }
     }
 
-    public List<Skill> findAll() throws SQLException, ClassNotFoundException {
+    public List<Skill> findAll(){
         return skillRepository.findAll();
     }
 
-    public void update(Skill skill) throws SQLException, ClassNotFoundException {
+    public void update(Skill skill){
         if(skill == null){
             throw  new IllegalArgumentException();
         }else skillRepository.update(skill);
     }
 
-    public void delete(Integer id) throws ClassNotFoundException, SQLException {
+    public void delete(Integer id){
         if(id == null || id < 0){
             throw new IllegalArgumentException();
         }else {
@@ -36,7 +36,7 @@ public class SkillController{
         }
     }
 
-    public Skill getById(Integer id) throws SQLException, ClassNotFoundException {
+    public Skill getById(Integer id){
         if(id == null || id < 0){
             throw new IllegalArgumentException();
         }else {
