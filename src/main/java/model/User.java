@@ -3,9 +3,8 @@ package model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -22,6 +21,15 @@ public class User extends BaseEntity {
     private String lastName;
     @Column
     private String specialty;
+
+
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_skills", joinColumns = {
+            @JoinColumn(name = "user_id", insertable = false, updatable = false, nullable = false)},
+            inverseJoinColumns = {
+            @JoinColumn(name = "skill_id", insertable = false, nullable = false, updatable = false)})
+    private Set<Skill>skills ;
 
 
 

@@ -1,6 +1,8 @@
 package view;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -15,13 +17,26 @@ public class ConsoleHelper {
     CustomerView cv = new CustomerView();
 
 
-    public void start() throws ClassNotFoundException {
+    public void start() throws ClassNotFoundException, SQLException {
         getMenu();
     }
 
 
+    public static Set<Integer> inputToSetId(String input) {
+        // 1) Separate user's input by comma:
+        String [] arrayOfId = input.split(",");
+        Set<String> idSetString = new HashSet<>(Arrays.asList(arrayOfId));
+        //  2) Converting Set<String> to Set<Integer>
+        Set<Integer> idSetInteger = new HashSet<>();
+        for(String sId : idSetString){
+            idSetInteger.add(Integer.parseInt(sId));
+        }
+        return idSetInteger;
+    }
 
-    public void getMenu() throws ClassNotFoundException {
+
+
+    public void getMenu() throws ClassNotFoundException, SQLException {
         System.out.println("JDBC PROJECT - console CRUD application");
         System.out.println("-------------------------------");
         System.out.println("The application started running at " + LocalDateTime.now());
@@ -35,10 +50,10 @@ public class ConsoleHelper {
             case "S":
                 sv.getSkillMenu();
                 break;
-           /* case "U":
+            case "U":
                 uv.getUserMenu();
                 break;
-            case "T":
+           /* case "T":
                 tv.getTeamMenu();
                 break;
             case "P":

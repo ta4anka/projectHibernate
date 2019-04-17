@@ -11,7 +11,7 @@ public class UserController{
     UserRepository userRepository = new UserRepositoryImpl();
 
 
-    public void save(User user) throws SQLException, ClassNotFoundException {
+    public void save(User user){
         if(user == null){
             throw new IllegalArgumentException();
         }else {
@@ -19,18 +19,18 @@ public class UserController{
         }
     }
 
-    public List<User> findAll() throws SQLException, ClassNotFoundException {
+    public List<User> findAll(){
         return userRepository.findAll();
     }
 
-    public void update(User user) throws SQLException, ClassNotFoundException {
+    public void update(User user){
         if(user == null){
             throw  new IllegalArgumentException();
         }else userRepository.update(user);
     }
 
 
-    public void delete(Integer id) throws SQLException, ClassNotFoundException {
+    public void delete(Integer id){
         if(id == null || id < 0){
             throw new IllegalArgumentException();
         }else {
@@ -38,7 +38,7 @@ public class UserController{
         }
     }
 
-    public User getById(Integer id) throws SQLException, ClassNotFoundException {
+    public User getById(Integer id){
         if(id == null || id < 0){
             throw new IllegalArgumentException();
         }else {
