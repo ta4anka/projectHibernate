@@ -9,7 +9,7 @@ Implement a console application that interacts with the database.
 * User(id, firstName, lastName, specialty, Set<Skill> skills).
 * Team(id, name, Set<User> users)
 * Project(id, name, budget, Set<Team> teams)
-* Customer(id, name, Set<Project> pojects)
+* Customer(id, name, Set<Project> projects)
 
 **Requirements:**
 * All CRUD operations for each of the entities.

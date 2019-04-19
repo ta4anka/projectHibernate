@@ -59,8 +59,8 @@ public class ConsoleHelper {
             case "P":
                 pv.getProjectMenu();
                 break;
-            /*case "C":
-                cv.getCustomerMenu();*/
+            case "C":
+                cv.getCustomerMenu();
             default:
                 System.out.println("Your choice is not right!");
                 choosingEntity = scanner.next();

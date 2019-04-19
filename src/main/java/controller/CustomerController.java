@@ -4,13 +4,13 @@ import model.Customer;
 import repository.CustomerRepository;
 import repository.impl.CustomerRepositoryImpl;
 
-import java.sql.SQLException;
+
 import java.util.List;
 
 public class CustomerController{
     CustomerRepository customerRepository = new CustomerRepositoryImpl();
 
-    public void save(Customer customer) throws SQLException, ClassNotFoundException {
+    public void save(Customer customer){
         if(customer == null){
             throw new IllegalArgumentException();
         }else {
@@ -19,18 +19,18 @@ public class CustomerController{
 
     }
 
-    public List<Customer> findAll() throws SQLException, ClassNotFoundException {
+    public List<Customer> findAll(){
         return customerRepository.findAll();
     }
 
-    public void update(Customer customer) throws SQLException, ClassNotFoundException {
+    public void update(Customer customer) {
         if(customer == null){
             throw  new IllegalArgumentException();
         }else customerRepository.update(customer);
 
     }
 
-    public void delete(Integer id) throws SQLException, ClassNotFoundException {
+    public void delete(Integer id){
         if(id == null || id < 0){
             throw new IllegalArgumentException();
         }else {
@@ -40,7 +40,7 @@ public class CustomerController{
     }
 
 
-    public Customer getById(Integer id) throws SQLException, ClassNotFoundException {
+    public Customer getById(Integer id) {
         if(id == null || id < 0){
             throw new IllegalArgumentException();
         }else {
