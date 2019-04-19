@@ -4,14 +4,14 @@ import model.Team;
 import repository.TeamRepository;
 import repository.impl.TeamRepositoryImpl;
 
-import java.sql.SQLException;
+
 import java.util.List;
 
 public class TeamController{
 
     TeamRepository teamRepository = new TeamRepositoryImpl();
 
-    public void save(Team team) throws SQLException, ClassNotFoundException {
+    public void save(Team team){
         if(team == null){
             throw new IllegalArgumentException();
         }else {
@@ -21,12 +21,12 @@ public class TeamController{
     }
 
 
-    public List<Team> findAll() throws SQLException, ClassNotFoundException {
+    public List<Team> findAll(){
         return teamRepository.findAll();
     }
 
 
-    public void update(Team team) throws SQLException, ClassNotFoundException {
+    public void update(Team team){
         if(team== null){
             throw  new IllegalArgumentException();
         }else teamRepository.update(team);
@@ -34,7 +34,7 @@ public class TeamController{
     }
 
 
-    public void delete(Integer id) throws SQLException, ClassNotFoundException {
+    public void delete(Integer id){
         if(id == null || id < 0){
             throw new IllegalArgumentException();
         }else {
@@ -44,7 +44,7 @@ public class TeamController{
     }
 
 
-    public Team getById(Integer id) throws SQLException, ClassNotFoundException {
+    public Team getById(Integer id){
         if(id == null || id < 0){
             throw new IllegalArgumentException();
         }else {

@@ -53,10 +53,10 @@ public class ConsoleHelper {
             case "U":
                 uv.getUserMenu();
                 break;
-           /* case "T":
+            case "T":
                 tv.getTeamMenu();
                 break;
-            case "P":
+            /*case "P":
                 pv.getProjectMenu();
                 break;
             case "C":
