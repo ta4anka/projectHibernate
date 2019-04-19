@@ -4,13 +4,13 @@ import model.Project;
 import repository.ProjectRepository;
 import repository.impl.ProjectRepositoryImpl;
 
-import java.sql.SQLException;
+
 import java.util.List;
 
 public class ProjectController{
     ProjectRepository projectRepository = new ProjectRepositoryImpl();
 
-    public void save(Project project) throws SQLException, ClassNotFoundException {
+    public void save(Project project){
         if(project == null){
             throw new IllegalArgumentException();
         }else {
@@ -18,19 +18,19 @@ public class ProjectController{
         }
     }
 
-    public List<Project> findAll() throws SQLException, ClassNotFoundException {
+    public List<Project> findAll(){
         return projectRepository.findAll();
     }
 
 
-    public void update(Project project) throws SQLException, ClassNotFoundException {
+    public void update(Project project){
         if(project == null){
             throw  new IllegalArgumentException();
         }else projectRepository.update(project);
     }
 
 
-    public void delete(Integer id) throws SQLException, ClassNotFoundException {
+    public void delete(Integer id){
         if(id == null || id < 0){
             throw new IllegalArgumentException();
         }else {
@@ -38,7 +38,7 @@ public class ProjectController{
         }
     }
 
-    public Project getById(Integer id) throws SQLException, ClassNotFoundException {
+    public Project getById(Integer id) {
         if(id == null || id < 0){
             throw new IllegalArgumentException();
         }else {

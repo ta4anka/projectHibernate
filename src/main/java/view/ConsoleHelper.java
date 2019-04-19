@@ -56,10 +56,10 @@ public class ConsoleHelper {
             case "T":
                 tv.getTeamMenu();
                 break;
-            /*case "P":
+            case "P":
                 pv.getProjectMenu();
                 break;
-            case "C":
+            /*case "C":
                 cv.getCustomerMenu();*/
             default:
                 System.out.println("Your choice is not right!");
