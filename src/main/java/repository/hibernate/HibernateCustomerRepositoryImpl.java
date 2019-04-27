@@ -1,4 +1,4 @@
-package repository.impl;
+package repository.hibernate;
 
 
 import model.Customer;
@@ -7,12 +7,10 @@ import org.hibernate.Session;
 import repository.CustomerRepository;
 import util.HibernateUtil;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.Query;
 import java.util.List;
 
-public class CustomerRepositoryImpl implements CustomerRepository {
+public class HibernateCustomerRepositoryImpl implements CustomerRepository {
 
     public void save(Customer customer) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -26,13 +24,9 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     public List<Customer> findAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class);
-        Root<Customer> root = criteria.from(Customer.class);
-        criteria.select(root);
-
-        List<Customer> customers = session.createQuery(criteria).getResultList();
+        String hql = "from Customer";
+        Query query = session.createQuery(hql);
+        List customers = query.getResultList();
         session.close();
         return customers;
     }

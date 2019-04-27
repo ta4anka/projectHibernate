@@ -1,4 +1,4 @@
-package repository.impl;
+package repository.hibernate;
 
 import model.Project;
 
@@ -6,13 +6,11 @@ import org.hibernate.Session;
 import repository.ProjectRepository;
 import util.HibernateUtil;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ProjectRepositoryImpl implements ProjectRepository {
+public class HibernateProjectRepositoryImpl implements ProjectRepository {
 
     public void save(Project project) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -27,12 +25,10 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     public List<Project> findAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Project> criteria = builder.createQuery(Project.class);
-        Root<Project> root = criteria.from(Project.class);
-        criteria.select(root);
+        String hql = "from Project";
+        Query query = session.createQuery(hql);
+        List projects = query.getResultList();
 
-        List<Project> projects = session.createQuery(criteria).getResultList();
         session.close();
         return projects;
     }

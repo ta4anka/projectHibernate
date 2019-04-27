@@ -2,13 +2,12 @@ package controller;
 
 import model.User;
 import repository.UserRepository;
-import repository.impl.UserRepositoryImpl;
+import repository.hibernate.HibernateUserRepositoryImpl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class UserController{
-    UserRepository userRepository = new UserRepositoryImpl();
+    UserRepository userRepository = new HibernateUserRepositoryImpl();
 
 
     public void save(User user){

@@ -18,7 +18,7 @@ public class Team extends BaseEntity {
     @Column
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "teams_users", joinColumns = {
             @JoinColumn(name = "team_id", insertable = false, updatable = false, nullable = false)},
             inverseJoinColumns = {

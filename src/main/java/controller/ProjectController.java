@@ -2,13 +2,13 @@ package controller;
 
 import model.Project;
 import repository.ProjectRepository;
-import repository.impl.ProjectRepositoryImpl;
+import repository.hibernate.HibernateProjectRepositoryImpl;
 
 
 import java.util.List;
 
 public class ProjectController{
-    ProjectRepository projectRepository = new ProjectRepositoryImpl();
+    ProjectRepository projectRepository = new HibernateProjectRepositoryImpl();
 
     public void save(Project project){
         if(project == null){

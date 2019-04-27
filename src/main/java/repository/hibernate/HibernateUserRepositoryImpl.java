@@ -1,17 +1,14 @@
-package repository.impl;
+package repository.hibernate;
 
 import model.User;
 import org.hibernate.Session;
 import repository.UserRepository;
 import util.HibernateUtil;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.Query;
 import java.util.List;
 
-public class UserRepositoryImpl implements UserRepository {
-
+public class HibernateUserRepositoryImpl implements UserRepository {
 
     public void save(User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -25,13 +22,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     public List<User> findAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> criteria = builder.createQuery(User.class);
-        Root<User> root = criteria.from(User.class);
-        criteria.select(root);
-
-        List<User> users = session.createQuery(criteria).getResultList();
+        String hql = "select distinct u from User u left join fetch u.skills s"; // insteaf of using hibernate.enable_lazy_load_no_trans
+        List <User> users = session.createQuery(hql,User.class).getResultList();
         session.close();
         return users;
     }

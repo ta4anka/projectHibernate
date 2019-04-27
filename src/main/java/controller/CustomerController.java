@@ -2,13 +2,13 @@ package controller;
 
 import model.Customer;
 import repository.CustomerRepository;
-import repository.impl.CustomerRepositoryImpl;
+import repository.hibernate.HibernateCustomerRepositoryImpl;
 
 
 import java.util.List;
 
 public class CustomerController{
-    CustomerRepository customerRepository = new CustomerRepositoryImpl();
+    CustomerRepository customerRepository = new HibernateCustomerRepositoryImpl();
 
     public void save(Customer customer){
         if(customer == null){

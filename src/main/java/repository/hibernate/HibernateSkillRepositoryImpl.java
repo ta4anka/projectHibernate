@@ -1,18 +1,20 @@
-package repository.impl;
+package repository.hibernate;
 
 
 import model.Skill;
 import org.hibernate.Session;
+
 import repository.SkillRepository;
 import util.HibernateUtil;
 
 
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class SkillRepositoryImpl implements SkillRepository {
+public class HibernateSkillRepositoryImpl implements SkillRepository {
 
     public void save(Skill skill) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -27,12 +29,16 @@ public class SkillRepositoryImpl implements SkillRepository {
     public List<Skill> findAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+
+        /*by using Criteria API:
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Skill> criteria = builder.createQuery(Skill.class);
         Root <Skill> root = criteria.from(Skill.class);
         criteria.select(root);
-
-        List<Skill> skills = session.createQuery(criteria).getResultList();
+        List<Skill> skills = session.createQuery(criteria).getResultList();*/
+        // By ising HQL:
+        String hql = "from Skill";
+        List <Skill> skills = session.createQuery(hql,Skill.class).getResultList();
         session.close();
         return skills;
     }

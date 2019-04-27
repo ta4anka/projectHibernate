@@ -24,7 +24,7 @@ public class User extends BaseEntity {
 
 
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "users_skills", joinColumns = {
             @JoinColumn(name = "user_id", insertable = false, updatable = false, nullable = false)},
             inverseJoinColumns = {

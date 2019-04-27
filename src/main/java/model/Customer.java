@@ -18,7 +18,7 @@ public class Customer extends BaseEntity{
     @Column
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "customers_projects", joinColumns = {
             @JoinColumn(name = "customer_id", insertable = false, updatable = false, nullable = false)},
             inverseJoinColumns = {

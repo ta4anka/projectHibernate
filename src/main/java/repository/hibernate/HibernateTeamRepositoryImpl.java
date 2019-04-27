@@ -1,4 +1,4 @@
-package repository.impl;
+package repository.hibernate;
 
 
 
@@ -7,12 +7,10 @@ import org.hibernate.Session;
 import repository.TeamRepository;
 import util.HibernateUtil;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.Query;
 import java.util.List;
 
-public class TeamRepositoryImpl implements TeamRepository {
+public class HibernateTeamRepositoryImpl implements TeamRepository {
 
     public void save(Team team) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -26,13 +24,9 @@ public class TeamRepositoryImpl implements TeamRepository {
 
     public List<Team> findAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Team> criteria = builder.createQuery(Team.class);
-        Root<Team> root = criteria.from(Team.class);
-        criteria.select(root);
-
-        List<Team> Teams = session.createQuery(criteria).getResultList();
+        String hql = "from Team";
+        Query query = session.createQuery(hql);
+        List Teams = query.getResultList();
         session.close();
         return Teams;
     }
@@ -40,6 +34,7 @@ public class TeamRepositoryImpl implements TeamRepository {
     public void update(Team team) {
         int id = team.getId();
         String newName = team.getName();
+
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();

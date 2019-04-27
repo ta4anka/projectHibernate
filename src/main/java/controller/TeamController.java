@@ -2,14 +2,14 @@ package controller;
 
 import model.Team;
 import repository.TeamRepository;
-import repository.impl.TeamRepositoryImpl;
+import repository.hibernate.HibernateTeamRepositoryImpl;
 
 
 import java.util.List;
 
 public class TeamController{
 
-    TeamRepository teamRepository = new TeamRepositoryImpl();
+    TeamRepository teamRepository = new HibernateTeamRepositoryImpl();
 
     public void save(Team team){
         if(team == null){

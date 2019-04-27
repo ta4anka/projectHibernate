@@ -2,13 +2,12 @@ package controller;
 
 import model.Skill;
 import repository.SkillRepository;
-import repository.impl.SkillRepositoryImpl;
+import repository.hibernate.HibernateSkillRepositoryImpl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class SkillController{
-    SkillRepository skillRepository = new SkillRepositoryImpl();
+    SkillRepository skillRepository = new HibernateSkillRepositoryImpl();
 
     public void save(Skill skill){
         if(skill == null){
